@@ -1,0 +1,19 @@
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit(registroForm)">
+    <label for="nombre">Nombre*</label>
+    <input id="nombre" type="text" formControlName="primerNombre">
+
+    <label for="segundoNombre">Segundo Nombre</label>
+    <input id="segundoNombre" type="text" formControlName="segundoNombre">
+
+    <button type="submit">Enviar</button>
+</form>
+
+<div *ngIf="registroForm.controls['primerNombre'].errors && registroForm.controls['primerNombre'].touched">
+    <div *ngIf="registroForm.controls['primerNombre'].errors.required">
+        <p style="color: red;">El campo Nombre es requerido</p>
+    </div>
+    <div *ngIf="registroForm.controls['primerNombre'].errors.minlength">
+        <p style="color: red;">El campo Nombre tiene que tener más de
+            {{registroForm.controls['primerNombre'].errors.minlength.requiredLength }} carácteres. La cantidad actual es {{ registroForm.controls['primerNombre'].errors.minlength.actualLength }}</p>
+    </div>
+</div>
